@@ -20,7 +20,7 @@ def setup(opts):
                outputs={ 'score': number()})
 def sequence_score(setup_tuple, inputs):
     model, tokenizer = setup_tuple
-    combined_sentences = sentence1 + ' ' + sentence2      # may be better to concatenate *after* tokenization using special [SEP] token
+    combined = inputs['sentence1'] + ' ' + inputs['sentence2']      # may be better to concatenate *after* tokenization using special [SEP] token
     input_tokens = tokenizer.encode(combined, add_special_tokens=True)
     input_ids = torch.tensor(input_tokens).unsqueeze(0)
     outputs = model(input_ids)
