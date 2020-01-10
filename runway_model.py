@@ -26,3 +26,6 @@ def sequence_score(setup_tuple, inputs):
     outputs = model(input_ids)
     seq_relationship_scores = outputs[0]     # outputs is an array with losses as the first value and logits as the second
     return seq_relationship_scores
+
+if __name__ == '__main__':
+    runway.run()
