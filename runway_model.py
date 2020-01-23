@@ -25,7 +25,7 @@ def sequence_score(setup_tuple, inputs):
     input_ids = torch.tensor(input_tokens).unsqueeze(0)
     outputs = model(input_ids)
     seq_relationship_scores = outputs[0]     # outputs is an array with losses as the first value and logits as the second
-    return seq_relationship_scores.cpu().numpy()
+    return seq_relationship_scores.cpu().detach().numpy()
 
 if __name__ == '__main__':
     runway.run()
