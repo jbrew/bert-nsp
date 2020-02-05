@@ -30,11 +30,11 @@ def sequence_score(setup_tuple, inputs):
 
 @runway.command(name='sequence_score',
 			   inputs={ 'line1': text(), 'line2_candidates': text()},
-			   outputs={ 'scores': array(item_type=number),
-				     'candidates': array(item_type=text) })
+			   outputs={ 'scores': array(item_type=number)})
 def sequence_score(setup_tuple, inputs):
 	model, tokenizer = setup_tuple
 	line1 = inputs['line1']
+	line2_candidates = inputs['line2_candidates']
 	line2_candidates = [line.strip() for line in line2_candidates.split('\n')]
 	loss_scores = []
 	for candidate in line2_candidates:
@@ -46,7 +46,7 @@ def sequence_score(setup_tuple, inputs):
 		#sequence_loss = outputs[0][0]	# not sure what all the nested levels are here
 		sequence_loss = float(sequence_loss.cpu().detach().numpy())
 		loss_scores.append(sequence_loss)
-	return {'candidates': line2_candidates, 'scores': loss_scores}
+	return loss_scores
 
 
 if __name__ == '__main__':
