@@ -29,15 +29,15 @@ def sequence_score(setup_tuple, inputs):
 """
 
 @runway.command(name='sequence_score',
-			   inputs={ 'line1': text(), 'line2_candidates': text()},
+			   inputs={ 'line1': text(), 'next_line_candidates': text()},
 			   outputs={ 'scores': array(item_type=number)})
 def sequence_score(setup_tuple, inputs):
 	model, tokenizer = setup_tuple
 	line1 = inputs['line1']
-	line2_candidates = inputs['line2_candidates']
-	line2_candidates = [line.strip() for line in line2_candidates.split('\n')]
+	next_line_candidates = inputs['next_line_candidates']
+	candidates = [line.strip() for line in next_line_candidates.split('\n')]
 	loss_scores = []
-	for candidate in line2_candidates:
+	for candidate in candidates:
 		combined = inputs['line1'] + ' ' + candidate      # may be better to concatenate *after* tokenization using special [SEP] token
 		input_tokens = tokenizer.encode(combined, add_special_tokens=True)
 		input_ids = torch.tensor(input_tokens).unsqueeze(0)
