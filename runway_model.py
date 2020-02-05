@@ -7,12 +7,12 @@ from runway.data_types import array, text, number, boolean
 
 # Setup block copy-pasted from Cris's tutorial
 @runway.setup(options={"checkpoint": runway.category(description="Pretrained checkpoints to use.",
-                                      choices=['celebAHQ-512', 'celebAHQ-256', 'celeba'],
-                                      default='celebAHQ-512')})
+									  choices=['celebAHQ-512', 'celebAHQ-256', 'celeba'],
+									  default='celebAHQ-512')})
 def setup(opts):
-    model = BertForNextSentencePrediction.from_pretrained('bert-base-uncased')
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    return model, tokenizer
+	model = BertForNextSentencePrediction.from_pretrained('bert-base-uncased')
+	tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+	return model, tokenizer
 
 @runway.command(name='sequence_score',
 			   inputs={ 'line1': text(), 'line2_candidates': text()},
