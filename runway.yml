@@ -5,4 +5,4 @@ spec:
   gpu: True
   cpu: True
 build_steps:
-  - pip install torch==1.1.0 runway-python numpy==1.16.4 transformers==2.1.1 scikit-learn==0.20.2
+  - pip install torch==1.4.0 runway-python numpy==1.16.4 transformers==2.1.1 scikit-learn==0.20.2
