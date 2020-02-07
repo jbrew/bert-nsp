@@ -46,6 +46,7 @@ def sequence_score(setup_tuple, inputs):
 		#sequence_loss = outputs[0][0]	# not sure what all the nested levels are here
 		sequence_loss = float(sequence_loss.cpu().detach().numpy())
 		loss_scores.append(sequence_loss)
+		print(candidate, sequence_loss)
 	return loss_scores
 
 
