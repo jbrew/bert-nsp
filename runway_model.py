@@ -34,6 +34,8 @@ def sequence_score(setup_tuple, inputs):
 def sequence_score(setup_tuple, inputs):
 	model, tokenizer = setup_tuple
 	line1 = inputs['line1']
+	outpath = line1[:5] + '.txt'
+	outfile = open(outpath, 'w')
 	next_line_candidates = inputs['next_line_candidates']
 	candidates = [line.strip() for line in next_line_candidates.split('\n')]
 	loss_scores = []
@@ -46,6 +48,7 @@ def sequence_score(setup_tuple, inputs):
 		#sequence_loss = outputs[0][0]	# not sure what all the nested levels are here
 		sequence_loss = float(sequence_loss.cpu().detach().numpy())
 		loss_scores.append(sequence_loss)
+		outfile.write(str(candidate) + '\t' + str(sequence_loss) + '\n')
 		print(candidate, sequence_loss)
 	return loss_scores
 
