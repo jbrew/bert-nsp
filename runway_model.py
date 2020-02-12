@@ -31,8 +31,7 @@ def sequence_score(setup_tuple, inputs):
 		input_tokens = tokenizer.encode(combined, add_special_tokens=True)
 		input_ids = torch.tensor(input_tokens).unsqueeze(0)
 		outputs = model(input_ids)
-		sequence_loss = outputs[0][0][0]     # outputs is an array with losses as the first value and logits as the second
-		#sequence_loss = outputs[0][0]	# not sure what all the nested levels are here
+		sequence_loss = outputs[0][0][0]     # outputs is an array with losses as the first value and logits as the second (I *think*)
 		sequence_loss = float(sequence_loss.cpu().detach().numpy())
 		loss_scores.append(sequence_loss)
 		outfile.write(str(candidate) + '\t' + str(sequence_loss) + '\n')
