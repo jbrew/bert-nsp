@@ -14,19 +14,6 @@ def setup(opts):
 	tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 	return model, tokenizer
 
-"""
-@runway.command(name='sequence_score',
-			   inputs={ 'sentence1': text(), 'sentence2': text()},
-			   outputs={ 'score': number()})
-def sequence_score(setup_tuple, inputs):
-	model, tokenizer = setup_tuple
-	combined = inputs['sentence1'] + ' ' + inputs['sentence2']      # may be better to concatenate *after* tokenization using special [SEP] token
-	input_tokens = tokenizer.encode(combined, add_special_tokens=True)
-	input_ids = torch.tensor(input_tokens).unsqueeze(0)
-	outputs = model(input_ids)
-	seq_relationship_scores = outputs[0]     # outputs is an array with losses as the first value and logits as the second
-	return seq_relationship_scores.cpu().detach().numpy()
-"""
 
 @runway.command(name='sequence_score',
 			   inputs={ 'line1': text(), 'next_line_candidates': text()},
