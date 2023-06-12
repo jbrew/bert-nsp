@@ -1,5 +1,5 @@
 torch==1.4.0
 runway-python==0.3.0
-transformers==2.1.1
+transformers==4.30.0
 scikit-learn==0.20.2
 numpy==1.16.4
